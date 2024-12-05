@@ -1,0 +1,29 @@
+function isValidRoman(roman) {
+    // Проверяем, что строка не пустая и не содержит недопустимых символов
+    if (roman === '' || /[^IVXLCDM]/.test(roman)) return false;
+
+    // Регулярное выражение для проверки валидности римских цифр
+    const regex = /^(M{0,4})(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$/;
+    return regex.test(roman);
+}
+
+function validRomans(arr) {
+    // Проверяем, является ли arr массивом
+    if (!Array.isArray(arr)) {
+        throw new TypeError('Input must be an array');
+    }
+    
+    // Фильтруем валидные римские числа
+    return arr.filter(isValidRoman);
+}
+
+// Примеры тестов
+describe("Testing", function() {
+  it("Basic tests", () => {
+    Test.assertSimilar(validRomans(["MMMCDLXVL", "MDLXXXVI", "DCLXII", "MMMMCLL", "MMDCCCLXXXIVCD"]), ["MDLXXXVI", "DCLXII"]);
+    Test.assertSimilar(validRomans(["MMMMCCCXXXII", "MMDCCCXXVCD", "MMCCCXLV", "DCCLXVIIICD", "MMMMCXII"]), ["MMMMCCCXXXII", "MMCCCXLV", "MMMMCXII"]);
+    Test.assertSimilar(validRomans(["DCCLIVI", "MDCCXXXVVI", "MDLXXVI", "MDVIL", "MCCLXIII"]), ["MDLXXVI", "MCCLXIII"]);
+    Test.assertSimilar(validRomans(["DV", "CLVIII", "MDCCCXXCD", "MDCLXVI", "MMMDCCCLXXXVI"]), ["DV", "CLVIII", "MDCLXVI", "MMMDCCCLXXXVI"]);
+    Test.assertSimilar(validRomans(["MMCDXVIII", "MMMCCXXXIV", "MMMMDCLXXXI", "MMMCMXIL", "MMMMCLXI"]), ["MMCDXVIII", "MMMCCXXXIV", "MMMMDCLXXXI", "MMMMCLXI"]);
+  });
+});
