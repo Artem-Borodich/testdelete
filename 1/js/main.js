@@ -217,9 +217,9 @@ class Person {
     }
 
 }
-const person1 =  new Person(1);
-console.log(person1.age)
-person1.age = 10;
-console.log(person1.age)
-person1.age = -10;
-console.log(person1.age)
+onabort.
+,
+onoffline
+000p
+
+//oo
